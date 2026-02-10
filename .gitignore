@@ -1,0 +1,15 @@
+# игнорируем
+*.exe
+.vscode/launch.json
+
+mnemonics/*.zip
+mnemonics/reports/*.txt
+mnemonics/reports/wrk/*.txt
+
+# не игнорируем из того, что ранее проигнорировали
+!mnemonics/reports/all5.txt
+!mnemonics/reports/all6.txt
+!mnemonics/reports/alphabet.txt
+!mnemonics/reports/wrk/2-topRecs4.txt
+!mnemonics/reports/wrk/3-topRecs4-связь.txt
+!mnemonics/reports/wrk/6-best.txt
