@@ -2,9 +2,13 @@
 *.exe
 .vscode/launch.json
 
+mnemonics/russian_nouns.txt
+mnemonics/russian_nouns-5.txt
 mnemonics/*.zip
 mnemonics/reports/*.txt
 mnemonics/reports/wrk/*.txt
+
+words/.tbank
 
 # не игнорируем из того, что ранее проигнорировали
 !mnemonics/reports/all5.txt

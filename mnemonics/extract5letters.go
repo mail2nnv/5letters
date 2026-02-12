@@ -123,17 +123,38 @@ func (wr *wordRec) fillChildren(words []word, alphabet *alphabet, report report)
 }
 
 func (wr *wordRec) report(alphabet *alphabet) string {
-	report, ww := "", 0.0
+	ww := 0.0
+	type line = struct {
+		string
+		float64
+	}
+	lines := make([]line, 0, 6)
 	for wr := wr; wr != nil; wr = wr.parent {
 		w := alphabet.weight(wr.word)
-		line := fmt.Sprintf("%s [%6.3f]", wr.word, w)
-		if report == "" {
-			report = line
-		} else {
-			report = line + " + " + report
-		}
+		lines = append(lines, line{
+			fmt.Sprintf("%s [%6.3f]", wr.word, w),
+			w})
 		ww += w
 	}
+	slices.SortFunc(lines, func(a, b line) int {
+		// descent order, highest weights - first
+		if a.float64 > b.float64 {
+			return -1
+		}
+		if a.float64 < b.float64 {
+			return +1
+		}
+		return 0
+	})
+
+	report := ""
+	for i, line := range lines {
+		if i > 0 {
+			report += " + "
+		}
+		report += line.string
+	}
+
 	return fmt.Sprintf("%6.3f : %s", ww, report)
 }
 
