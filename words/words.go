@@ -55,7 +55,16 @@ func (r *rule) fill(arg string) error {
 	for i, m := range m {
 		switch m.int {
 		case 0:
-			r.stop[m.rune] = true
+			should := false
+			for _, r := range r.should {
+				if r == m.rune {
+					should = true
+					break
+				}
+			}
+			if !should {
+				r.stop[m.rune] = true
+			}
 		case 1:
 			r.may[m.rune] = i
 		case 2:
