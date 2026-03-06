@@ -92,17 +92,15 @@ func (r rule) match(w string) bool {
 		i++
 	}
 	for may, pos := range r.may {
-		ok := false
 		i := 0
 		for _, rune := range w {
 			rune = unicode.ToLower(rune)
 			if rune == may {
-				ok = i != pos
+				if i == pos {
+					return false
+				}
 			}
 			i++
-		}
-		if !ok {
-			return false
 		}
 	}
 	return true
