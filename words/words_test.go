@@ -15,8 +15,8 @@ func Test_rule_match(t *testing.T) {
 		{"ПИЛКА|20002", "ПАРТА", true},
 		{"ПИЛКА|20001", "ОТПАД", false}, // wrong pos `П`
 		{"ПИЛКА|20001", "ПОЧТА", false}, // wrong pos `A`
-		{"ПИЛКА|20001", "ПЕРСИ", false}, // missed `A`
 		{"ПИЛКА|20001", "ПАРИЯ", false}, // `И` deprecated
+		{"ПИЛКА|20001", "ПЕРЕЦ", false}, // missed `A`
 		{"РАНЕЦ|21000", "РАМКА", false}, // wrong pos `A`
 	}
 	for _, tt := range tests {
